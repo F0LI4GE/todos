@@ -1,0 +1,10 @@
+.column {
+	border-right: 8px solid black;
+	padding: 8px;
+}
+
+.todo-list {
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+}
