@@ -1,18 +1,20 @@
-// export default class TodoService {
-// 	constructor(private todoRepository: TodoRepository) {}
-// 	getTodos(): Todo[] {
-// 		return this.todoRepository.getTodos();
-// 	}
-// 	getTodo(id: number): Todo {
-// 		return this.todoRepository.getTodo(id);
-// 	}
-// 	addTodo(todo: Todo): void {
-// 		this.todoRepository.addTodo(todo);
-// 	}
-// 	updateTodo(todo: Todo): void {
-// 		this.todoRepository.updateTodo(todo);
-// 	}
-// 	deleteTodo(id: number): void {
-// 		this.todoRepository.deleteTodo(id);
-// 	}
-// }
+import TodoModel, { Todo } from '../../models/todos';
+
+export class TodoService {
+	static addTodo(todoBody: Todo): Promise<void> {
+		const todo = new TodoModel(todoBody);
+		return todo.save();
+	}
+
+	static getTodos(): Promise<Todo[]> {
+		return TodoModel.find();
+	}
+
+	static updateTodo(id: string, todo: Todo): Promise<void> {
+		return TodoModel.findByIdAndUpdate(id, todo);
+	}
+
+	static deleteTodo(id: string): Promise<void> {
+		return TodoModel.findByIdAndRemove(id);
+	}
+}

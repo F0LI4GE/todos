@@ -1,6 +1,13 @@
 import { Schema, model } from 'mongoose';
 
-const todoSchema = new Schema(
+export type Todo = {
+	_id: string;
+	title: string;
+	content?: string;
+	completed?: boolean;
+};
+
+const todoSchema = new Schema<Todo>(
 	{
 		title: {
 			type: String,
